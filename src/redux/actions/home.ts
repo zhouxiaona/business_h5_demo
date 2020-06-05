@@ -2,9 +2,9 @@
  * @Author: tankswift
  * @Date: 2020-04-30 09:21:54
  * @LastEditors: tankswift
- * @LastEditTime: 2020-06-05 13:37:19
+ * @LastEditTime: 2020-06-05 15:32:19
  * @Description: 文件描述
- * @FilePath: \workSpace\h5_demo\src\redux\actions\home.ts
+ * @FilePath: \workSpace\business_h5_demo\src\redux\actions\home.ts
  */
 import * as actionTypes from '../constants/actionTypes';
 export function share() {
