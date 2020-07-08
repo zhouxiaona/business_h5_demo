@@ -2,9 +2,9 @@
  * @Author: tankswift
  * @Date: 2020-06-04 16:28:18
  * @LastEditors: tankswift
- * @LastEditTime: 2020-06-05 13:20:50
+ * @LastEditTime: 2020-07-08 13:40:33
  * @Description: 文件描述
- * @FilePath: \workSpace\h5_demo\src\api\apiUtils.js
+ * @FilePath: \workSpace\business_h5_demo\src\api\apiUtils.js
  */
 /**
  * @description 数据请求模块，轻度封装fetch
@@ -13,13 +13,11 @@
  */
 import axios from 'axios'
 import { Toast } from 'antd-mobile'
-import Loading from '../compontents/Loading'
-import { Cookies } from '../type/index.d';
 
 // 接口baseUrl
 let baseUrlConfig = {
     "development": '',
-    "production": 'http://m.xrspy.com/high/api'
+    "production": 'http://xxx.com/api'
 }
 
 const baseUrl = baseUrlConfig[process.env.NODE_ENV]

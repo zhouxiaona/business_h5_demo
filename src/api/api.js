@@ -23,7 +23,7 @@ export async function islogin() {
     let userdata = store.getState().home.userdata // 获取redux里面登录态
     if (userdata.openid) { // 检验redux里面登录态
         return true
-    } else if (Cookies.get('userdata')) { // 检验cookie里面登录态
+    } else if (Cookies.get('userdata') && Cookies.get('userdata') !== 'undefined') { // 检验cookie里面登录态
         let data_str = Cookies.get('userdata') // 获取cookie里面用户数据
         let data = JSON.parse(data_str)
         // 同步登陆态到redux
@@ -142,9 +142,4 @@ export async function bindInfo(code, phone) {
 //  完善用户信息
 export async function completeUserInfo(name, grade, pUid) {
     return apiUtils.commonPost(`/index/completeUserInfo`, { name, grade, pUid })
-}
-
-// 立即签到
-export async function writeMessage(param) {
-    return apiUtils.commonPost(`index/writeMessage`, { ...param })
 }

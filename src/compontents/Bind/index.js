@@ -2,13 +2,13 @@
  * @Author: river
  * @Date: 2020-03-10 20:43:49
  * @LastEditors: tankswift
- * @LastEditTime: 2020-06-05 13:44:04
+ * @LastEditTime: 2020-07-08 13:39:36
  * @Description: 文件描述
- * @FilePath: \workSpace\h5_demo\src\compontents\Bind\index.js
+ * @FilePath: \workSpace\business_h5_demo\src\compontents\Bind\index.js
  */
 import React from 'react';
 import * as Api from '../../api/api';
-import { MtaH5, TweenMaxs, Bounces } from "../../type/index.d"
+import { TweenMaxs, Bounces } from "../../type/index.d"
 import Store from '../../redux/store/Store';
 import { Toast, Picker } from 'antd-mobile';
 import phoneImg from '../../image/phone.png'
