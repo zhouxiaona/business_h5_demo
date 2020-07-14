@@ -2,9 +2,9 @@
  * @Author: lei
  * @Date: 2020-06-12 21:52:57
  * @LastEditors: tankswift
- * @LastEditTime: 2020-07-07 18:35:09
+ * @LastEditTime: 2020-07-14 10:12:32
  * @Description: 文件描述
- * @FilePath: \workSpace\payment_in_autumn\src\page\Clear\index.js
+ * @FilePath: \workSpace\business_h5_demo\src\page\Clear\index.js
  */
 /*
  * @Author: river
@@ -19,8 +19,6 @@ import { Cookies } from '../../type/index.d';
 
 class Clear extends React.Component {
     componentWillMount() {
-        // Cookies.remove("userdata")
-        // Cookies.remove('userdata', { path: './', domain: 'https://autumn.xrspy.com' });
         Cookies.set('userdata', undefined, { expires: 3 });
         sessionStorage.clear()
         localStorage.clear()

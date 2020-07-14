@@ -2,7 +2,7 @@
  * @Author: river
  * @Date: 2020-01-14 13:14:57
  * @LastEditors: tankswift
- * @LastEditTime: 2020-07-08 13:31:45
+ * @LastEditTime: 2020-07-14 10:16:23
  * @Description: 首页逻辑
  * @FilePath: \workSpace\business_h5_demo\src\page\Home\index.js
  */
@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 import * as homeActions from '../../redux/actions/home'
 import { bindActionCreators } from 'redux'
 import * as Api from '../../api/api.js'
-import { TweenMaxs, Bounces, Swipers } from "../../type/index.d.ts"
+import { Cookies } from "../../type/index.d.ts"
 import { Toast, Picker } from 'antd-mobile'
 import 'antd-mobile/lib/toast/style/css'
 import 'antd-mobile/lib/picker/style/css'
@@ -24,8 +24,8 @@ class Home extends React.Component {
 	}
 
 	async componentWillMount() {
-		await Api.islogin()
-		await Api.configShare()
+		// await Api.islogin()
+		// await Api.configShare()
 	}
 
 	componentDidMount() { }
