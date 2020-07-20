@@ -4,9 +4,8 @@ import qs from 'querystring';
 import store from '../redux/store/Store'
 import { Dispatch, AnyAction } from 'redux'
 import * as actionTypes from '../redux/constants/actionTypes';
-// import { MtaH5 } from "../type/index.d"
-// import { Toast } from 'antd-mobile';
 import 'antd-mobile/lib/toast/style/css'
+
 //引入微信jssdk文件
 let wx = require("weixin-js-sdk");
 let dispatch = store.dispatch

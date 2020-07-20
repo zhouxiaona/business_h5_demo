@@ -2,21 +2,10 @@
  * @Author: tankswift
  * @Date: 2020-07-14 10:13:34
  * @LastEditors: tankswift
- * @LastEditTime: 2020-07-14 10:15:30
- * @Description: 文件描述
+ * @LastEditTime: 2020-07-20 13:48:23
+ * @Description: 公用工具函数库
  * @FilePath: \workSpace\business_h5_demo\src\utils\index.js
  */
-// 判断当前环境是微信内还是APP内部
-export function isWXPlatform() {
-    let wx = (function () {
-        return navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1
-    })();
-    if (wx) {
-        return true
-    } else {
-        return false
-    }
-}
 
 // 判断当前终端环境
 export const browser = {
@@ -34,7 +23,19 @@ export const browser = {
             iPad: u.indexOf('iPad') > -1, //是否iPad
             webApp: u.indexOf('Safari') == -1, //是否web程序，没有头部与底部
             _weixin: u.toLowerCase().indexOf("micromessenger") > -1,// 微信
-            qq: u.match(/\sQQ/i) == " qq" //是否QQ
+            qq: u.match(/\sQQ/i) == " qq", //是否QQ
+            isxesApp: u.indexOf('XesApp') > -1, //是否是学而思APP
         };
     }(),
+}
+
+// 判断路由中是否含有某个参数
+export function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) { return pair[1]; }
+    }
+    return (false);
 }

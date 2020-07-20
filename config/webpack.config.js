@@ -6,6 +6,9 @@ const path = require('path');
 const webpack = require('webpack');
 const resolve = require('resolve');
 const PnpWebpackPlugin = require('pnp-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const vConsolePlugin = require('vconsole-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
@@ -204,6 +207,9 @@ module.exports = function (webpackEnv) {
               // Pending futher investigation:
               // https://github.com/terser-js/terser/issues/120
               inline: 2,
+              drop_console: true,
+              drop_debugger: false,
+              pure_funcs: ['console.log'] // 移除console
             },
             mangle: {
               safari10: true,
@@ -508,6 +514,11 @@ module.exports = function (webpackEnv) {
     },
     plugins: [
       // Generates an `index.html` file with the <script> injected.
+      isEnvProduction && new CleanWebpackPlugin(), // pro环境下打包清除build包
+      isEnvProduction && new BundleAnalyzerPlugin(), // 打包时分析包的依赖分布
+      new vConsolePlugin({ // 开发环境下打开vconsole
+        enable: isEnvDevelopment
+      }),
       new HtmlWebpackPlugin(
         Object.assign(
           {},

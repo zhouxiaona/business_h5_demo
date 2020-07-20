@@ -2,7 +2,7 @@
  * @Author: tankswift
  * @Date: 2020-06-04 16:28:18
  * @LastEditors: tankswift
- * @LastEditTime: 2020-07-08 13:40:33
+ * @LastEditTime: 2020-07-20 13:51:09
  * @Description: 文件描述
  * @FilePath: \workSpace\business_h5_demo\src\api\apiUtils.js
  */
@@ -17,7 +17,8 @@ import { Toast } from 'antd-mobile'
 // 接口baseUrl
 let baseUrlConfig = {
     "development": '',
-    "production": 'http://xxx.com/api'
+    "production": 'http://xxx.com/api',
+    // "production": 'http://xxx.com/api'
 }
 
 const baseUrl = baseUrlConfig[process.env.NODE_ENV]

@@ -8,8 +8,6 @@ import AppRouter from './router/';
 import './api/axiosConfig.js'
 
 // import "./mock.js"
-// import vconsole from 'vconsole'
-// new vconsole()
 
 ReactDOM.render(
     <Provider store={store}>
