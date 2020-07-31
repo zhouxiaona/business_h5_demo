@@ -2,19 +2,25 @@
  * @Author: river
  * @Date: 2020-03-10 20:43:49
  * @LastEditors: tankswift
- * @LastEditTime: 2020-07-08 13:39:36
+ * @LastEditTime: 2020-07-22 10:07:20
  * @Description: 文件描述
- * @FilePath: \workSpace\business_h5_demo\src\compontents\Bind\index.js
+ * @FilePath: \workSpace\teaching_site_publicity\src\compontents\Bind\index.js
  */
 import React from 'react';
-import * as Api from '../../api/api';
-import { TweenMaxs, Bounces } from "../../type/index.d"
+import * as Api from '../../api/api.js'
+import AppApi from '../../api/AppApi.js'
+import { Cookies } from "../../type/index.d"
 import Store from '../../redux/store/Store';
 import { Toast, Picker } from 'antd-mobile';
-import phoneImg from '../../image/phone.png'
-import nameImg from '../../image/name.png'
-import selectImg from '../../image/select.png'
-import Close from "../../image/alert_close.png"
+import { browser } from "../../utils/index.js"
+
+import phoneImg from '../../image/Bind/phone.png'
+import nameImg from '../../image/Bind/name.png'
+import selectImg from '../../image/Bind/select.png'
+import codeImg from '../../image/Bind/code.png'
+import narrow from '../../image/Bind/narrow.png'
+import Close from "../../image/Bind/close.png"
+
 import 'antd-mobile/lib/toast/style/css';
 import 'antd-mobile/lib/picker/style/css';
 
@@ -45,6 +51,7 @@ function getGradeTextByGradeId(gradeList, gradeId) {
 
 class Bind extends React.Component {
     constructor(props) {
+        super(props)
         this.state = {
             type: true,
             phoneNum: "",   // 手机号
@@ -52,9 +59,9 @@ class Bind extends React.Component {
             name: "",       // 姓名
             grade: "",      // 年级
             gradeText: "请选择在读年级",
-            codeTime: 60,
-            Timer: null,
-            pUid: ""
+            codeTime: 60, //倒计时时间
+            Timer: null, //倒计时计时器
+            pUid: "",
         }
     }
 
@@ -120,10 +127,10 @@ class Bind extends React.Component {
                 Store.dispatch({
                     type: 'UPDATA_USERINFO',
                     data: {
-                        number: res.data.stu_number,
+                        stuNumber: res.data.stuNumber,
                         grade: res.data.grade,
                         name: res.data.name,
-                        isBind: 1
+                        bind: 1,
                     }
                 })
                 this.props.close()
@@ -131,6 +138,7 @@ class Bind extends React.Component {
         } else {
             Toast.fail(res.message, 2);
         }
+
     }
 
     // 完善信息
@@ -147,16 +155,17 @@ class Bind extends React.Component {
             Toast.fail("请选择年级", 1.5);
             return false;
         }
+
         let res = await Api.completeUserInfo(this.state.name, this.state.grade, this.state.pUid)
         if (res.code === 1) {
             //信息完善成功，关闭完善信息页面,更改状态
             Store.dispatch({
                 type: 'UPDATA_USERINFO',
                 data: {
-                    number: res.data,
+                    stuNumber: res.data,
                     grade: this.state.grade,
                     name: this.state.name,
-                    isBind: 1
+                    bind: 1,
                 }
             })
             this.props.close()
@@ -166,18 +175,22 @@ class Bind extends React.Component {
     }
 
     render() {
+        const { props } = this
         return (
-            <div id="Bind">
-                <div className="BindBox">
+            <div id="Bind" style={props.AlertShow ? { visibility: 'visible' } : { visibility: 'hidden' }}>
+                <div className={props.AlertShow ? 'BindBox BindBoxActive' : 'BindBox'}>
                     <div className="title">
-                        {this.state.type ? (Store.getState().home.userdata.isBind === 1 ? "切换账号" : "快速登录") : "完善信息"} <br />
-                        <span></span>
+                        {this.state.type ? (Store.getState().home.userdata.bind === 1 ? "切换账号" : "快速登录") : "完善信息"} <br />
                     </div>
-                    {this.state.type ? <div className="inputBox">
+
+                    {this.state.type && <div className="inputBox">
                         <div className="input">
-                            <input type="number" className="inputFrom"
+                            <img src={phoneImg} alt="phoneImg" className="phoneImg" />
+                            <input
+                                type="number"
+                                className="inputFrom"
                                 onChange={e => this.setState({ phoneNum: e.target.value })}
-                                placeholder="输入手机号"
+                                placeholder="请输入手机号码"
                                 onBlur={() => {
                                     setTimeout(function () {
                                         var scrollHeight = document.documentElement.scrollTop || document.body.scrollTop || 0;
@@ -185,80 +198,81 @@ class Bind extends React.Component {
                                     }, 100);
                                 }}
                             />
-                            <img src={phoneImg} alt="phoneImg" className="phoneImg" />
                         </div>
-                    </div> :
-                        <div className="inputBox">
-                            <div className="input">
-                                <input type="text" className="inputFrom"
-                                    onChange={e => this.setState({ name: e.target.value })}
-
-                                    onBlur={() => {
-                                        setTimeout(function () {
-                                            var scrollHeight = document.documentElement.scrollTop || document.body.scrollTop || 0;
-                                            window.scrollTo(0, Math.max(scrollHeight - 1, 0));
-                                        }, 100);
-                                    }}
-                                    placeholder="请输入学员姓名" />
-                                <img src={nameImg} alt="nameImg" className="nameImg" />
-                            </div>
-                        </div>
-                    }
-
-                    {this.state.type ? <div className="inputBox">
-                        <div className="codeInput">
-                            <input type="number" className="inputFrom"
-                                onChange={e => this.setState({ codeNum: e.target.value })}
-
+                    </div>}
+                    {!this.state.type && <div className="inputBox">
+                        <div className="input">
+                            <img src={nameImg} alt="nameImg" className="nameImg" />
+                            <input
+                                type="text"
+                                className="inputFrom"
+                                placeholder="请输入孩子姓名"
+                                onChange={e => this.setState({ name: e.target.value })}
                                 onBlur={() => {
                                     setTimeout(function () {
                                         var scrollHeight = document.documentElement.scrollTop || document.body.scrollTop || 0;
                                         window.scrollTo(0, Math.max(scrollHeight - 1, 0));
                                     }, 100);
                                 }}
-                                placeholder="填写验证码" />
-
+                            />
                         </div>
-                        <div className="codeBtn" onClick={this.startTimer}>
-                            {this.state.codeTime === 60 ? "获取验证码" : this.state.codeTime + `s后重试`}
-                        </div>
-                    </div> :
-                        <div className="inputBox">
+                    </div>}
 
-                            <div className="input">
-                                <Picker
-                                    title="在读年级"
-                                    cols={1}
-                                    data={gradeArr}
-                                    value={[this.state.grade]}
-                                    onPickerChange={v => {
-                                        this.setState({
-                                            grade: v[0] + "",
-                                        })
-                                    }}
-                                    onOk={v => {
-                                        this.setState({
-                                            grade: v[0],
-                                            gradeText: getGradeTextByGradeId(gradeArr, v[0])
-                                        })
-                                    }
-                                    }
-                                >
-                                    <div className="inputFrom"  >
-                                        {this.state.gradeText}
-                                    </div>
-                                </Picker>
-                                <img src={selectImg} alt="nameImg" className="nameImg" />
+                    {this.state.type && <div className="inputBox">
+                        <div className="input">
+                            <img src={codeImg} alt="phoneImg" className="codeImg" />
+                            <input
+                                type="tel"
+                                className="inputFromCode"
+                                onChange={e => this.setState({ codeNum: e.target.value })}
+                                placeholder="填写验证码"
+                                maxLength={6}
+                                onBlur={() => {
+                                    setTimeout(function () {
+                                        var scrollHeight = document.documentElement.scrollTop || document.body.scrollTop || 0;
+                                        window.scrollTo(0, Math.max(scrollHeight - 1, 0));
+                                    }, 100);
+                                }}
+                            />
+                            <div className="codeBtn" onClick={this.startTimer}>
+                                {this.state.codeTime === 60 ? "获取验证码" : this.state.codeTime + `s后重试`}
                             </div>
                         </div>
-                    }
+                    </div>}
 
-                    {this.state.type ? <div className="submitBtn" onClick={this.submit}>
-                        {Store.getState().home.userdata.isBind === 1 ? "切     换" : "登    录"}
-                    </div> :
-                        <div className="submitBtn" onClick={this.complate}>
-                            完  成
-                    </div>
+                    {!this.state.type && <div className="inputBox">
+                        <div className="input">
+                            <img src={selectImg} className="nameImg" />
+                            <Picker
+                                title="请选择孩子年级"
+                                cols={1}
+                                data={gradeArr}
+                                value={[this.state.grade]}
+                                onPickerChange={v => {
+                                    this.setState({
+                                        grade: v[0] + "",
+                                    })
+                                }}
+                                onOk={v => {
+                                    this.setState({
+                                        grade: v[0],
+                                        gradeText: getGradeTextByGradeId(gradeArr, v[0])
+                                    })
+                                }}
+                            >
+                                <div className="inputFromPicker"  >
+                                    {this.state.gradeText}
+                                </div>
+                            </Picker>
+                            <img src={narrow} className="narrow" />
+                        </div>
+                    </div>}
+
+                    {this.state.type ?
+                        <div className="submitBtn" onClick={this.submit}>
+                            {Store.getState().home.userdata.bind === 1 ? "切换账号" : "立即登录"}
+                        </div> :
+                        <div className="submitBtn" onClick={this.complate}> 完  成</div>
                     }
                     <img src={Close} alt="" className="close" onClick={() => this.props.close()} />
                 </div>

@@ -22,8 +22,8 @@ export const browser = {
             iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
             iPad: u.indexOf('iPad') > -1, //是否iPad
             webApp: u.indexOf('Safari') == -1, //是否web程序，没有头部与底部
-            _weixin: u.toLowerCase().indexOf("micromessenger") > -1,// 微信
             qq: u.match(/\sQQ/i) == " qq", //是否QQ
+            _weixin: u.toLowerCase().indexOf("micromessenger") > -1,// 微信
             isxesApp: u.indexOf('XesApp') > -1, //是否是学而思APP
         };
     }(),

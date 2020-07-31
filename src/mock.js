@@ -44,7 +44,7 @@ Mock.mock('/auth/getInfoByOpenId', 'post', {
     "code": 1,
     "data": {
         "stuNumber": "192021784555",
-        "isBind": 1,
+        "bind": 1,
         "name": "面条君",
     }
 })

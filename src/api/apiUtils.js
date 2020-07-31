@@ -18,7 +18,6 @@ import { Toast } from 'antd-mobile'
 let baseUrlConfig = {
     "development": '',
     "production": 'http://xxx.com/api',
-    // "production": 'http://xxx.com/api'
 }
 
 const baseUrl = baseUrlConfig[process.env.NODE_ENV]

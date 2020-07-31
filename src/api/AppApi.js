@@ -127,9 +127,9 @@ const AppApi = {
                         let resData = JSON.parse(res)
                         resData = { ...resData, cardId: browser.versions.ios ? resData.card : resData.user_card_id }
                         console.log(resData, '--getUserInfo--')
-                        if (resData.avatar == '') {
-                            resData.avatar = 'https://imgs.xrspy.com/old_new/avatar.png'
-                        }
+                        // if (resData.avatar == '') {
+                        resData.avatar = 'https://imgs.xrspy.com/old_new/avatar.png'
+                        // }
                         //  else {
                         //     resData.avatar = resData.avatar.replace('http://jiazhanghuifile.speiyou.com', 'https://xrstest.xrspy.com/jiazhanghuifile')
                         // }

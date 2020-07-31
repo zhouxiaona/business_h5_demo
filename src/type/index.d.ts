@@ -7,9 +7,6 @@
  * @FilePath: \workSpace\business_h5_demo\src\type\index.d.ts
  */
 import Cookie from 'js-cookie'
-import { TweenMax, Bounce } from 'gsap'
 import Pickers from 'react-picker'
 export const Cookies = Cookie
-export const TweenMaxs = TweenMax
-export const Bounces = Bounce
 export const Picker = Pickers
