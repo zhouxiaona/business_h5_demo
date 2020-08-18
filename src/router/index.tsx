@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import Store from '../redux/store/Store';
 import * as actionTypes from '../redux/constants/actionTypes'
 import "../compontents/Loading/index.styl"
-import Home from '../page/Home'
+const Home = React.lazy(() => import("../page/Home"));
 
 const AppRouter: React.FC = () => {
     useEffect(() => {

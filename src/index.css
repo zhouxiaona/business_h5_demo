@@ -11,4 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+@media screen and (orientation: portrait) {
+  /*竖屏...*/
+} 
+@media screen and (orientation: landscape) {
+  /*横屏...*/
+}
  
