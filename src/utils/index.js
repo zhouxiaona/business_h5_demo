@@ -1,12 +1,3 @@
-/*
- * @Author: tankswift
- * @Date: 2020-07-14 10:13:34
- * @LastEditors: tankswift
- * @LastEditTime: 2020-07-20 13:48:23
- * @Description: 公用工具函数库
- * @FilePath: \workSpace\business_h5_demo\src\utils\index.js
- */
-
 // 判断当前终端环境
 export const browser = {
     versions: function () {

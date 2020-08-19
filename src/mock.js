@@ -1,12 +1,3 @@
-/*
- * @Author: river
- * @Date: 2020-03-12 17:23:22
- * @LastEditors: tankswift
- * @LastEditTime: 2020-07-08 13:38:28
- * @Description: mock数据
- * @FilePath: \workSpace\business_h5_demo\src\mock.js
- */
-
 import Mock from 'mockjs'
 
 Mock.mock('/index/getPhoneCode', 'post', {

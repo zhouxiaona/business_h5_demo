@@ -1,11 +1,4 @@
-/*
- * @Author: tankswift
- * @Date: 2020-06-04 16:28:18
- * @LastEditors: tankswift
- * @LastEditTime: 2020-07-20 13:51:09
- * @Description: 文件描述
- * @FilePath: \workSpace\business_h5_demo\src\api\apiUtils.js
- */
+
 /**
  * @description 数据请求模块，轻度封装fetch
  * @author raziel
@@ -13,7 +6,7 @@
  */
 import axios from 'axios'
 import { Toast } from 'antd-mobile'
-
+import 'antd-mobile/lib/toast/style/css'
 // 接口baseUrl
 let baseUrlConfig = {
     "development": '',

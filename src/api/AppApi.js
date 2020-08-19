@@ -1,11 +1,4 @@
-/*
- * @Author: tankswift
- * @Date: 2020-06-16 10:25:32
- * @LastEditors: tankswift
- * @LastEditTime: 2020-07-20 15:30:46
- * @Description: AppApi方法封装
- * @FilePath: \workSpace\business_h5_demo\src\api\AppApi.js
- */
+
 import Jsbridge from "xesjsbridge/dist";
 import store from '../redux/store/Store'
 import * as actionTypes from '../redux/constants/actionTypes';

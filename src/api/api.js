@@ -2,9 +2,7 @@ import apiUtils from './apiUtils.js'
 import { Cookies } from '../type/index.d.ts';
 import qs from 'querystring';
 import store from '../redux/store/Store'
-import { Dispatch, AnyAction } from 'redux'
 import * as actionTypes from '../redux/constants/actionTypes';
-import 'antd-mobile/lib/toast/style/css'
 
 //引入微信jssdk文件
 let wx = require("weixin-js-sdk");

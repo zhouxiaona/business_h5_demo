@@ -1,11 +1,3 @@
-/*
- * @Author: river
- * @Date: 2020-01-13 10:07:23
- * @LastEditors: tankswift
- * @LastEditTime: 2020-06-03 13:10:12
- * @Description: 文件描述
- * @FilePath: \workSpace\live_events\src\redux\reducers\home.d.ts
- */
 import * as actionTypes from '../constants/actionTypes'
 export const home = (state = {
     userdata: {},

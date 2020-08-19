@@ -1,17 +1,8 @@
-/*
- * @Author: tankswift
- * @Date: 2020-04-30 09:21:54
- * @LastEditors: tankswift
- * @LastEditTime: 2020-06-05 15:32:19
- * @Description: 文件描述
- * @FilePath: \workSpace\business_h5_demo\src\redux\actions\home.ts
- */
 import * as actionTypes from '../constants/actionTypes';
+import { browser } from '../../utils/index'
 export function share() {
     return (dispatch: any) => {
-        let u: string = navigator.userAgent;
-        let isiOS: boolean = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-        if (isiOS) {
+        if (browser.versions.ios) {
             dispatch({
                 type: actionTypes.SHARE_URL,
                 data: {
