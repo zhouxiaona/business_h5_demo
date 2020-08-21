@@ -1,8 +1,3 @@
-/**
- * @description loading animation methods
- * @author raziel
- * @since 19/05/23
- */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.styl'

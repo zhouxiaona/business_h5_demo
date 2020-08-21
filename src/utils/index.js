@@ -30,3 +30,50 @@ export function getQueryVariable(variable) {
     }
     return (false);
 }
+
+/**
+ * 时间格式化
+  * @param time
+ * @param cFormat
+ * @returns {*}
+ */
+export function parseTime(time, cFormat) {
+    if (arguments.length === 0) {
+        return null
+    }
+    const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}'
+    let date
+    if (typeof time === 'object') {
+        date = time
+    } else {
+        if (('' + time).length === 10) time = parseInt(time) * 1000
+        date = new Date(time)
+    }
+    const formatObj = {
+        y: date.getFullYear(),
+        m: date.getMonth() + 1,
+        d: date.getDate(),
+        h: date.getHours(),
+        i: date.getMinutes(),
+        s: date.getSeconds(),
+        a: date.getDay()
+    }
+    const time_str = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
+        let value = formatObj[key]
+        if (key === 'a') return ['一', '二', '三', '四', '五', '六', '日'][value - 1]
+        if (result.length > 0 && value < 10) {
+            value = '0' + value
+        }
+        return value || 0
+    })
+    return time_str
+}
+
+// 计数格式处理函数
+export function handleNumber(number) {
+    if (number < 10000) {
+        return number
+    } else {
+        return (number / 10000).toFixed(1) + 'w'
+    }
+}

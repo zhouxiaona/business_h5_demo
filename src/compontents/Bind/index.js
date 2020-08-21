@@ -1,11 +1,3 @@
-/*
- * @Author: river
- * @Date: 2020-03-10 20:43:49
- * @LastEditors: tankswift
- * @LastEditTime: 2020-07-22 10:07:20
- * @Description: 文件描述
- * @FilePath: \workSpace\teaching_site_publicity\src\compontents\Bind\index.js
- */
 import React from 'react';
 import * as Api from '../../api/api.js'
 import AppApi from '../../api/AppApi.js'
