@@ -77,3 +77,12 @@ export function handleNumber(number) {
         return (number / 10000).toFixed(1) + 'w'
     }
 }
+
+// 处理链接中的含参码
+export function handleParams(arr) {
+    let obj = {}
+    arr.map(item => {
+        obj[item.split('=')[0]] = item.split('=')[1]
+    })
+    return obj
+}
