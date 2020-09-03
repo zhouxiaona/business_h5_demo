@@ -86,3 +86,20 @@ export function handleParams(arr) {
     })
     return obj
 }
+
+// 处理姓名隐藏
+export function handleNameHIdden(str) {
+    if (str.length === 2) {
+        return str[0] + '*'
+    } else if (str.length >= 3) {
+        var xing = '**';
+        return str.substring(0, 1) + xing + str.substring(3);
+    } else {
+        return str;
+    }
+}
+
+// 手机号隐藏中间四位
+export function handlePhoneNumber(phoneNum) {
+    return phoneNum.substring(0, 4) + '****' + phoneNum.substring(8)
+}
