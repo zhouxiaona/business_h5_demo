@@ -110,7 +110,6 @@ export async function configShare() {
         //     imgUrl: 'https://imgs.xrspy.com/high/highShare.png', // 分享图标
         //     success: function () {
         //         // 用户点击了分享后执行的回调函数
-        //         MtaH5.clickShare('wechat_friend');
         //     }
         // })
         // wx.onMenuShareAppMessage({
@@ -120,7 +119,6 @@ export async function configShare() {
         //     imgUrl: 'https://imgs.xrspy.com/high/highShare.png', // 分享图标
         //     success: function () {
         //         // 用户点击了分享后执行的回调函数
-        //         MtaH5.clickShare('wechat_moments');
         //     }
         // });
     });
