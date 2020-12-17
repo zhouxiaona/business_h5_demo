@@ -21,23 +21,15 @@ class Home extends React.Component {
 		}
 	}
 
-	async componentWillMount() {
+	async componentDidMount() {
 		if (browser.versions._weixin) {
-			alert('是微信呀')
+			console.log('是微信呀')
 		} else if (browser.versions.isxesApp) {
 			AppApi.setTitle('h5_demo')
 			AppApi.cancelLogin()
 			AppApi.setShareContent('邀好友,领好礼', 'https://imgs.xrspy.com/old_new/share.jpg', '送好友9元学10课时名师直播课，15件礼物等你免费拿！', window.location.href)
 			AppApi.navToFeShare(this.testFn)
 			AppApi.guestLogin(this.appGetData)
-		} else {
-			alert('哈哈哈，我是除微信和学而思APP之外的环境~')
-		}
-	}
-
-	async componentDidMount() {
-		if (browser.versions.isxesApp) {
-			console.log('--AppApi--')
 			let res = await AppApi.getGuestMode()
 			if (!res) return Toast.fail('AppApi报错,请稍后重试')
 			if (res.state == 0) {
@@ -45,13 +37,15 @@ class Home extends React.Component {
 			} else {
 				this.appGetData()
 			}
+		} else {
+			console.log('哈哈哈，我是除微信和学而思APP之外的环境~')
 		}
 	}
 
 	componentWillUnmount() { }
 
 	testFn = () => {
-		alert('分享成功')
+		console.log('分享成功')
 	}
 
 	appGetData = async () => {
