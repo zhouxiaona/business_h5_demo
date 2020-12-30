@@ -6,6 +6,8 @@ import * as actionTypes from '../redux/constants/actionTypes'
 import "../compontents/Loading/index.styl"
 const Home = React.lazy(() => import("../page/Home"));
 const About = React.lazy(() => import("../page/About"));
+const Index = React.lazy(() => import("../page/Index"));
+
 const AppRouter: React.FC = () => {
     useEffect(() => {
         if (browser.versions.ios) {
@@ -38,8 +40,9 @@ const AppRouter: React.FC = () => {
             </div>}>
                 <div>
                     <Switch>
-                        <Route path='/' exact component={Home} />
+                        <Route path='/' exact component={Index} />
                         <Route path='/About' exact component={About} />
+                        <Route path='/Home' exact component={Home} />
                         <Route render={() => <Redirect to="/" />} />
                     </Switch>
                 </div>
