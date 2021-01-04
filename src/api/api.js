@@ -59,7 +59,7 @@ export async function islogin() {
             })
         } else { // 跳转北京获取openid
             return new Promise((resolve, reject) => {
-                window.location.href = 'https://minsight.speiyou.com/i/usercenter/api/wxoauth?app_id=wx17745458a8a5358c&callback_url=' + window.location.href
+                window.location.href = 'https://wxapi.speiyou.com/usercenter/common/wxoauth?app_id=wx17745458a8a5358c&callback_url=' + window.location.href
             });
         }
     }

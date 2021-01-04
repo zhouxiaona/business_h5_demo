@@ -33,7 +33,7 @@ axios.interceptors.response.use(
         const { code } = response.data
         if (code === 0) {
             Cookies.remove("userdata")
-            window.location.href = 'https://minsight.speiyou.com/i/usercenter/api/wxoauth?app_id=wx17745458a8a5358c&callback_url=' + window.location.origin
+            window.location.href = 'https://wxapi.speiyou.com/usercenter/common/wxoauth?app_id=wx17745458a8a5358c&callback_url=' + window.location.origin
         } else {
             return Promise.resolve(response.data)
         }
