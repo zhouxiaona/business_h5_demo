@@ -34,6 +34,8 @@ const gradeArr = [
     { "id": "14", "value": "10", "label": "高中一年级" },
     { "id": "15", "value": "11", "label": "高中二年级" },
     { "id": "16", "value": "12", "label": "高中三年级" },
+    { "id": "17", "value": "17", "label": "已毕业" },
+    { "id": "18", "value": "-20", "label": "无年级" },
 ]
 
 function getGradeTextByGradeId(gradeList, gradeId) {
