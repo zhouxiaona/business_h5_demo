@@ -15,35 +15,53 @@ import './index.styl';
 
 const grid = 8;
 // 水平样式
-const getItemStyle = (isDragging, draggableStyle) => ({
-    // some basic styles to make the items look a bit nicer
-    userSelect: 'none',
-    padding: grid * 2,
-    margin: `0 ${grid}px 0 0`,
-    // change background colour if dragging
-    background: isDragging ? 'lightgreen' : 'grey',
-    // styles we need to apply on draggables
-    ...draggableStyle,
-});
+const getItemStyle = (provided, snapshot) => {
+    console.log(provided, '---getItemStyle-provided--')
+    console.log(snapshot, '---getItemStyle-snapshot--')
+    return {
+        // some basic styles to make the items look a bit nicer
+        userSelect: 'none',
+        padding: grid * 2,
+        margin: `${grid}px`,
+        // change background colour if dragging
+        background: snapshot.isDragging ? 'lightgreen' : 'grey',
+        // styles we need to apply on draggables
+        ...provided.draggableProps.style,
+    }
+};
 
-const getListStyle = isDraggingOver => ({
-    background: isDraggingOver ? 'lightblue' : 'lightgrey',
-    display: 'flex',
-    padding: grid,
-    overflow: 'auto',
-});
+const getListStyle = (provided, snapshot) => {
+    // console.log(provided, '---getListStyle-provided---')
+    // console.log(snapshot, '--snapshot--snapshot----')
+    // isDraggingOver: false
+    // draggingOverWith: null
+    // draggingFromThisWith: null
+    // isUsingPlaceholder: false
+    return {
+        background: snapshot.isDraggingOver ? 'lightblue' : 'lightgrey',
+        display: 'flex',
+        flexWrap: 'wrap',
+        padding: grid,
+    }
+};
 
 class DragMove extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             items: [
-                { id: 'item-0', content: 'hello' },
-                { id: 'item-1', content: 'I' },
-                { id: 'item-2', content: 'am' },
-                { id: 'item-3', content: '卡' },
-                { id: 'item-4', content: '特' },
-                { id: 'item-5', content: '洛' },
+                { id: 'item-0', content: 'item-0' },
+                { id: 'item-1', content: 'item-1' },
+                { id: 'item-2', content: 'item-2' },
+                { id: 'item-3', content: 'item-3' },
+                { id: 'item-4', content: 'item-4' },
+                { id: 'item-5', content: 'item-5' },
+                { id: 'item-6', content: 'item-6' },
+                { id: 'item-7', content: 'item-7' },
+                { id: 'item-8', content: 'item-8' },
+                { id: 'item-9', content: 'item-9' },
+                { id: 'item-10', content: 'item-10' },
+                { id: 'item-11', content: 'item-11' },
             ]
         }
     }
@@ -81,7 +99,7 @@ class DragMove extends React.Component {
                         {(provided, snapshot) => (
                             <div
                                 ref={provided.innerRef}
-                                style={getListStyle(snapshot.isDraggingOver)}
+                                style={getListStyle(provided, snapshot)}
                                 {...provided.droppableProps}
                             >
                                 {this.state.items.map((item, index) => (
@@ -91,10 +109,7 @@ class DragMove extends React.Component {
                                                 ref={provided.innerRef}
                                                 {...provided.draggableProps}
                                                 {...provided.dragHandleProps}
-                                                style={getItemStyle(
-                                                    snapshot.isDragging,
-                                                    provided.draggableProps.style
-                                                )}
+                                                style={getItemStyle(provided, snapshot)}
                                             >
                                                 {item.content}
                                             </div>
