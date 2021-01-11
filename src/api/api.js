@@ -50,6 +50,7 @@ export async function islogin() {
                                 }
                             )
                         }
+                        return
                         delete urlObj.open_id
                         delete urlObj.union_id
                         let str = qs.stringify(urlObj) ? '?' + qs.stringify(urlObj) : ''

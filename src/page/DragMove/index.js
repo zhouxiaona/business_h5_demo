@@ -66,7 +66,9 @@ class DragMove extends React.Component {
         }
     }
 
-    async componentDidMount() { }
+    async componentDidMount() {
+        await Api.islogin()
+    }
 
     // a little function to help us with reordering the result
     reOrder = (list, startIndex, endIndex) => {

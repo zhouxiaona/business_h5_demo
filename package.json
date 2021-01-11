@@ -2,7 +2,7 @@
   "name": "business_h5_demo",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://172.50.111.13:9090",
+  "proxy": "http://172.50.110.70:9098",
   "homepage": "/",
   "dependencies": {
     "@babel/core": "7.4.3",
