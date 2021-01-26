@@ -10,38 +10,12 @@ const Index = React.lazy(() => import("../page/Index"));
 const DragMove = React.lazy(() => import("../page/DragMove"));
 
 const AppRouter: React.FC = () => {
-    useEffect(() => {
-        if (browser.versions.ios) {
-            Store.dispatch({
-                type: actionTypes.SHARE_URL,
-                data: {
-                    url: window.location.href
-                }
-            })
-        } else {
-            Store.dispatch({
-                type: actionTypes.SHARE_URL,
-                data: {
-                    url: false
-                }
-            })
-        }
-    });
-
     return (
         <Router>
-            <Suspense fallback={<div className="Loading_box">
-                <div className="spinner">
-                    <div className="rect1"></div>
-                    <div className="rect2"></div>
-                    <div className="rect3"></div>
-                    <div className="rect4"></div>
-                    <div className="rect5"></div>
-                </div>
-            </div>}>
+            <Suspense fallback>
                 <div>
                     <Switch>
-                        <Route path='/' exact component={DragMove} />
+                        <Route path='/' exact component={Home} />
                         <Route path='/About' exact component={About} />
                         <Route path='/Home' exact component={Home} />
                         <Route path='/Index' exact component={Index} />
@@ -51,7 +25,6 @@ const AppRouter: React.FC = () => {
             </Suspense>
         </Router>
     )
-
 }
 
 export default AppRouter

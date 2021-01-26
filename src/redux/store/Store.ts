@@ -1,13 +1,4 @@
-/*
- * @Author: river
- * @Date: 2020-01-13 10:07:23
- * @LastEditors: tankswift
- * @LastEditTime: 2020-06-03 13:30:43
- * @Description: 文件描述
- * @FilePath: \workSpace\live_events\src\redux\store\Store.ts
- */
 import { createStore, applyMiddleware, compose } from 'redux'
-
 import thunk from 'redux-thunk'
 import { appReducer } from '../reducers'
 import { Cookies } from '../../type/index.d'

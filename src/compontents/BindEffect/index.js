@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Api from '../../api/api.js'
 import AppApi from '../../api/AppApi.js'
-import { Cookies } from "../../type/index.d"
+import { Cookies } from "../../type"
 import Store from '../../redux/store/Store';
 import { Toast, Picker } from 'antd-mobile';
 import { browser } from "../../utils/index.js"
@@ -38,13 +38,12 @@ const gradeArr = [
     { "id": "18", "value": "-20", "label": "无年级" },
     { "id": "19", "value": "-10", "label": "早教" },
 ]
-
 function getGradeTextByGradeId(gradeList, gradeId) {
     let data = gradeList.filter(item => item.value === gradeId)
     return data.length === 0 ? "在读年级" : data[0].label
 }
 
-class Bind extends React.Component {
+class BindEffect extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -59,12 +58,6 @@ class Bind extends React.Component {
             pUid: "",
         }
     }
-
-    componentWillMount() { }
-
-    componentDidMount() { }
-
-    componentWillUnmount() { }
 
     // 获取手机验证码
     startTimer = async () => {
@@ -172,7 +165,7 @@ class Bind extends React.Component {
     render() {
         const { props } = this
         return (
-            <div id="Bind" style={props.AlertShow ? { visibility: 'visible' } : { visibility: 'hidden' }}>
+            <div id="BindEffect" style={props.AlertShow ? { visibility: 'visible' } : { visibility: 'hidden' }}>
                 <div className={props.AlertShow ? 'BindBox BindBoxActive' : 'BindBox'}>
                     <div className="title">
                         {this.state.type ? (Store.getState().home.userdata.bind === 1 ? "切换账号" : "快速登录") : "完善信息"} <br />
@@ -275,5 +268,4 @@ class Bind extends React.Component {
         );
     }
 }
-
-export default Bind;
+export default BindEffect;

@@ -7,7 +7,7 @@
  * @FilePath: \仓库\christmas-activities\src\page\Home\index.js
  */
 import React, { Component } from 'react'
-import './index.styl'
+import './index copy.styl'
 import temp1 from '../../image/temp1.png'
 import temp2 from '../../image/temp2.png'
 import temp3 from '../../image/temp3.png'
@@ -46,6 +46,7 @@ export default class index extends Component {
                 'https://pupupula.net/spring/res/raw-assets/resources/PNG/Furniture/01.eccf0.png',
                 'https://pupupula.net/spring/res/raw-assets/resources/PNG2/Furniture/01.8e65f.png',
                 'https://pupupula.net/spring/res/raw-assets/resources/PNG/Kid/08.011ae.png',
+                'https://pupupula.net/spring/res/raw-assets/resources/PNG2/Room/Room.adb50.png'
             ],
         }
     }
@@ -285,10 +286,37 @@ export default class index extends Component {
         let { imgUrl, curIndex, imgArr, myImg, posterUrl } = this.state
         return (
             <div id='Home'>
-                <div className="posterOuter">
-                    <img src="https://pupupula.net/spring/res/raw-assets/resources/PNG2/Room/Room.adb50.png" className="bg" />
+                { posterUrl != '' && <img src={posterUrl} className="posterUrl" />}
+                <div className="index-container">
+                    <input type="file" accept="image/*" id="image-input" className='file' onChange={() => this.getPhoto()} />
+                    <div className="photo-box">
+                        <div className="preview-box">
+                            <img
+                                src={imgUrl}
+                                id="preview-img"
+                                style={{ transform: 'scale(' + myImg.scale + ') translate(' + myImg.position.x + 'px,' + myImg.position.y + 'px)', zIndex: 1000 }}
+                                onTouchStart={(e) => this.getInitPosition(e)}
+                                onTouchMove={(e) => this.getMovePosition(e)}
+                                onTouchEnd={(e) => this.getLeavePosition(e)}
+                                onClick={() => console.log(111111111)}
+                            />
+                        </div>
+                        <img
+                            src={imgArr[curIndex]}
+                            id="preview-bg"
+                            onTouchStart={(e) => this.getInitPosition(e)}
+                            onTouchMove={(e) => this.getMovePosition(e)}
+                            onTouchEnd={(e) => this.getLeavePosition(e)}
+                            onClick={(e) => console.log(e)}
+                        />
+                    </div>
+                    <div className="photo-ul">
+                        <img src={temp1} onClick={() => this.changeIndex(0)} className={curIndex == 0 ? "select-img" : ""} />
+                        <img src={temp2} onClick={() => this.changeIndex(1)} className={curIndex == 1 ? "select-img" : ""} />
+                        <img src={temp3} onClick={() => this.changeIndex(2)} className={curIndex == 2 ? "select-img" : ""} />
+                    </div>
+                    <div className="composite-btn" onClick={this.handlePost}>合成图片</div>
                 </div>
-
             </div >
         )
     }
