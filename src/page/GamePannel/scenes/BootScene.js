@@ -34,6 +34,11 @@ import egg1 from './img/egg1.png'
 import egg2 from './img/egg2.png'
 import resultObject from './img/resultObject.png'
 
+import cat1 from './img/cat1.png'
+import cat2 from './img/cat2.png'
+import object1 from './img/object1.png'
+import object2 from './img/object2.png'
+
 let tvshowJson = require('./json/tvshow.json');
 let objectsJson = require('./json/objects.json');
 let televisionJson = require('./json/television.json');
@@ -85,6 +90,11 @@ export default class BootScene extends Phaser.Scene {
     this.load.image('resultBottom', "https://img30.360buyimg.com/cms/jfs/t1/8466/13/12879/22390/5c3c451cE591c483e/00627c32d7a9d7b8.jpg")
     this.load.image('resultObject1', 'https://imgs.xrspy.com/game/resultObject1.png')
     this.load.image('upload_loading', upload_loading)
+
+    this.load.image('cat1', 'https://imgs.xrspy.com/game/cat1.png')
+    this.load.image('cat2', 'https://imgs.xrspy.com/game/cat2.png')
+    this.load.image('object1', 'https://imgs.xrspy.com/game/object1.png')
+    this.load.image('object2', 'https://imgs.xrspy.com/game/object2.png')
 
     this.load.atlas('tvshow', tvshow, tvshowJson)
     this.load.atlas('objects', 'https://imgs.xrspy.com/game/objects.png', objectsJson)
