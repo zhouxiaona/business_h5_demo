@@ -3,7 +3,7 @@ import './index.styl'
 import { Phaser } from '../../type/index.d.ts'
 import BootScene from './scenes/BootScene'
 import StartScene from './scenes/StartScene'
-export default class index extends Component {
+export default class GamePannel extends Component {
     constructor(props) {
         super(props)
         this.GameMain = null
@@ -13,6 +13,7 @@ export default class index extends Component {
     }
 
     componentDidMount() {
+        console.log(window, '---window---')
         this.GameMain = new Phaser.Game({
             type: Phaser.AUTO,
             scale: {
@@ -34,15 +35,13 @@ export default class index extends Component {
                 StartScene,
             ]
         })
-
-        // this.GameMain
     }
 
 
     render() {
         let { imgUrl, curIndex, imgArr, myImg, posterUrl, alertShow, imgEleArr, posImgEleWrap } = this.state
         return (
-            <div id='Home'>
+            <div id='GamePannel'>
                 <div id="game-container"></div>
                 <div className="popup J_popup">
                     <div className="ct">
