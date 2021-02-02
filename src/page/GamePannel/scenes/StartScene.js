@@ -181,7 +181,8 @@ export default class StartScene extends Phaser.Scene {
 
   // 创建墙纸1.1
   createWall() {
-    this.wall = this.add.image(0, 0, 'wall1').setOrigin(0);
+    this.wall = this.add.image(0, 0, 'wall1.png').setOrigin(0);
+    this.wall.setName('wall')
     this.wall.setInteractive()
     this.wall.on('pointerdown', this.deleteCurrentWrap, this)
     this.mobilityGroup.add(this.wall);
@@ -303,7 +304,7 @@ export default class StartScene extends Phaser.Scene {
   // 创建编辑面板-1.2
   createEditWrap() {
     this.editGroup = this.add.group();
-    this.createEditContent();       //创建tab内容
+    this.createFurnitureContent();       //创建tab内容
     this.createEditTab();           //创建tab标题
     // this.createFinishBtn();         //创建完成按钮
     // this.editGroup.setActive(true);
@@ -411,9 +412,10 @@ export default class StartScene extends Phaser.Scene {
     this.editTabWrap = editTabWrap;
     this.editArrow = arrowWrap;
     this.editTabWrapGroup = editTabWrapGroup;
+    this.editTabWrapContainer.setDepth(10);
   }
 
-  // 底部tab点击事件1.2.2.1
+  // 底部tab点击事件1.2.2.1--------
   handleEditTabClick(e) {
     const target = e.name || '';
     console.log(target, '---target---')
@@ -446,6 +448,7 @@ export default class StartScene extends Phaser.Scene {
         break;
       case 'object':
         this.furnitureContent.setVisible(false);
+        this.furnitureContent.disableInteractive();
         this.postContent && (this.postContent.setVisible(false));
         if (this.articleContent) {
           this.articleContent.setVisible(true)
@@ -509,22 +512,17 @@ export default class StartScene extends Phaser.Scene {
       }
     })
   }
-
-  //创建tab内容1.2.1
-  createEditContent() {
-    this.editContent = this.add.graphics();
-    //tab内容背景
-    this.editContent.fillStyle(0xffffff, 1)
-    this.editContent.fillRect(0, 0, this.gameWidth, 350);
-    this.editGroup.add(this.editContent);
-    this.createFurnitureContent(); // 创建家具
-  }
   // 创建家具1.2.1.1
   createFurnitureContent() {
     this.furnitureContent = this.add.container(0, this.gameHeight - 350);
+    let whitePannel = this.add.graphics();
+    //tab内容背景
+    whitePannel.fillStyle(0xffffff, 1)
+    whitePannel.fillRect(0, 0, this.gameWidth, 350);
+    this.editGroup.add(whitePannel);
     // const leftTab = this.add.graphics();
     // const leftTabGroup = this.add.group();
-    this.furnitureContent.add([this.editContent]);
+    this.furnitureContent.add([whitePannel]);
     // leftTab.fillStyle(0xfff7e0, 1);
     // leftTab.fillRect(0, 0, 155, 350);
     // // leftTabGroup.add(leftTab)
@@ -612,9 +610,35 @@ export default class StartScene extends Phaser.Scene {
     this.addScrollHandler(eggContent);
     this.eggContent = eggContent;
   }
+  // 创建article
   createArticleContent() {
-    const articleContent = this.add.group(this.editContent);
+    this.articleContent = this.add.container(0, this.gameHeight - 350);
 
+    let whitePannel = this.add.graphics();
+    whitePannel.fillStyle(0xffffff, 1)
+    whitePannel.fillRect(0, 0, this.gameWidth, 350);
+    this.editGroup.add(whitePannel);
+
+    this.articleContent.add([whitePannel]);
+    this.articleGroup = this.add.group()
+    let aniArr = ['cat1', 'cat2']
+    const pos = this.option.fourContentPos;
+    aniArr.map((sprite, index) => {
+      const { left, top } = pos[index]
+      const item = this.add.sprite(left, top, sprite)
+      item.setOrigin(0.5);
+      item.setInteractive();
+      item.setScale(0.4);
+      item.setName(sprite)
+      this.articleGroup.add(item);
+      this.articleContent.add([item]);
+      this.mobilityGroup.add(item);
+    })
+
+    return;
+
+
+    const articleContent = this.add.group(this.editContent);
     const articleSpriteSheet = {
       number: 46,
       info: [
@@ -624,7 +648,6 @@ export default class StartScene extends Phaser.Scene {
         { name: 'article4', spriteSheetName: 'article', number: 9, startNum: 37 },
       ]
     };
-
     const specialSize = {
       'article1.png': 0.35,
       'article2.png': 0.35,
@@ -664,6 +687,8 @@ export default class StartScene extends Phaser.Scene {
     this.addScrollHandler(articleContent);
     this.articleContent = articleContent;
   }
+
+
   createPostContent() {
     const postContent = this.game.add.group(this.editContent);
 
@@ -748,9 +773,6 @@ export default class StartScene extends Phaser.Scene {
     this.indescribeGroup.visible = false;
   }
 
-
-
-
   // ======
   switchPost(e) {
     const item = e.name || '';
@@ -789,6 +811,8 @@ export default class StartScene extends Phaser.Scene {
     }
     this.postLeftTab.getMatching('name', 'selected')[0].y = selectedTop;
   }
+
+
   /**
    * 
    * @param {*} spriteSheet  spriteSheet雪碧图信息
@@ -1013,24 +1037,25 @@ export default class StartScene extends Phaser.Scene {
   changeFurnitureDetail(e, reg, group, element, type) {
     const mobilityGroup = this.mobilityGroup;
     const target = e.frame;
-    if (!target || target.name == 'ctSelected.png') return;
+    console.log(target, '---target---')
+    if (!target || target.name == 'selected') return;
     const num = target.name.match(reg)[1],
       { left, top } = this.option.fourContentPos[num - 1];
     let selected = group.getMatching('name', 'selected')[0];
     if (!selected) {
       selected = this.add.sprite(left, top, 'objects', 'ctSelected.png');
       selected.setOrigin(0.5);
-      selected.name = 'selected';
+      selected.setName('selected');
       group.add(selected);
+      this.furnitureContent.add([selected])
+      this.mobilityGroup.add(selected)
     }
 
     selected.x = left;
     selected.y = top;
 
     if (type !== 1) {
-      console.log(mobilityGroup, '---mobilityGroup---')
-
-      mobilityGroup.getMatching('defineName', element) && mobilityGroup.getMatching('defineName', element).length > 0 && mobilityGroup.getMatching('defineName', element)[0].setTexture(target.name);
+      mobilityGroup.getMatching('name', element) && mobilityGroup.getMatching('name', element).length > 0 && mobilityGroup.getMatching('name', element)[0].setTexture(target.name);
       return;
     }
 
@@ -1089,6 +1114,7 @@ export default class StartScene extends Phaser.Scene {
   //   }
   //   this.furnitureLeftTab.getMatching('name', 'selected')[0].y = selectedTop;
   // }
+
   // 创建家具内容
   createFourContent(spriteName, spriteSheet, groupWrap, width) {
     const pos = this.option.fourContentPos;
@@ -1098,15 +1124,15 @@ export default class StartScene extends Phaser.Scene {
       item.setOrigin(0.5);
       item.setInteractive();
       item.setScale(width / item.width);
-      item.defineName = spriteName || ''
+      item.setName(sprite || '')
       groupWrap.add(item);
-      this.furnitureContent.add([item])
-      this.mobilityGroup.add(item)
+      this.furnitureContent.add([item]);
+      this.mobilityGroup.add(item);
     })
 
     const selectedItem = this.add.sprite(pos[0].left, pos[0].top, 'objects', 'ctSelected.png');
     selectedItem.setOrigin(0.5);
-    selectedItem.name = 'selected';
+    selectedItem.setName('selected')
     groupWrap.add(selectedItem);
     this.furnitureContent.add([selectedItem])
     this.mobilityGroup.add(selectedItem)
