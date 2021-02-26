@@ -9,6 +9,7 @@ const About = React.lazy(() => import("../page/About"));
 const Index = React.lazy(() => import("../page/Index"));
 const GamePannel = React.lazy(() => import("../page/GamePannel"))
 const DragMove = React.lazy(() => import("../page/DragMove"));
+const Clear = React.lazy(() => import("../page/Clear"));
 
 const AppRouter: React.FC = () => {
     return (
@@ -20,6 +21,8 @@ const AppRouter: React.FC = () => {
                         <Route path='/About' exact component={About} />
                         <Route path='/Home' exact component={Home} />
                         <Route path='/Index' exact component={Index} />
+                        <Route path='/DragMove' exact component={DragMove} />
+                        <Route path='/Clear' exact component={Clear} />
                         <Route render={() => <Redirect to="/" />} />
                     </Switch>
                 </div>

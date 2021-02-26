@@ -110,3 +110,17 @@ export function handlePhoneNumber(phoneNum) {
 export function hidePhone(phone) {
     return phone.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')
 }
+
+// 匹配区间图片
+export function handleHigher(arr, num) {
+    for (let i = 0; i < arr.length; i++) {
+        if (num >= arr[i][0] && num <= arr[i][1]) {
+            // console.log(i, '----下标0----')
+            return i
+        }
+        if (num > arr[arr.length - 1][1]) {
+            // console.log(arr.length - 1, '----下标1----')
+            return arr.length - 1
+        }
+    }
+}

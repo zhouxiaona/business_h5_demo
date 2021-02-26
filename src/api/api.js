@@ -50,7 +50,6 @@ export async function islogin() {
                                 }
                             )
                         }
-                        return
                         delete urlObj.open_id
                         delete urlObj.union_id
                         let str = qs.stringify(urlObj) ? '?' + qs.stringify(urlObj) : ''
@@ -81,7 +80,7 @@ export async function configShare() {
     let url1 = window.location.origin + '?ADTAG=penq'
     wx.config({
         debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-        appId: "wx17745458a8a5358c", // 必填，公众号的唯一标识
+        appId: "wx079591e7e7783408", // 必填，公众号的唯一标识
         // appId: "wx59235dddb44934f3", // 必填，公众号的唯一标识
         timestamp: res.data.timestamp, // 必填，生成签名的时间戳
         nonceStr: res.data.nonceStr, // 必填，生成签名的随机串
@@ -99,29 +98,29 @@ export async function configShare() {
     });
     wx.ready(() => {
         wx.hideAllNonBaseMenuItem();
-        wx.hideOptionMenu()
-        wx.hideMenuItems({ menuList: ['menuItem:share:appMessage', 'menuItem:share:timeline'] })
+        // wx.hideOptionMenu()
+        // wx.hideMenuItems({ menuList: ['menuItem:share:appMessage', 'menuItem:share:timeline'] })
 
-        // wx.showMenuItems({
-        //     menuList: ['menuItem:share:appMessage', 'menuItem:share:timeline'] // 要显示的菜单项，所有menu项见附录3
-        // });
-        // wx.onMenuShareTimeline({
-        //     title: '上海学而思新高三课程体系震撼发布！', // 分享标题
-        //     link: url1,// 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        //     imgUrl: 'https://imgs.xrspy.com/high/highShare.png', // 分享图标
-        //     success: function () {
-        //         // 用户点击了分享后执行的回调函数
-        //     }
-        // })
-        // wx.onMenuShareAppMessage({
-        //     title: '上海学而思新高三课程体系震撼发布！', // 分享标题
-        //     desc: '抢跑就现在，赢定新高三！学而思资深教师天团带孩子抢跑新高三', // 分享描述
-        //     link: url, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        //     imgUrl: 'https://imgs.xrspy.com/high/highShare.png', // 分享图标
-        //     success: function () {
-        //         // 用户点击了分享后执行的回调函数
-        //     }
-        // });
+        wx.showMenuItems({
+            menuList: ['menuItem:share:appMessage', 'menuItem:share:timeline'] // 要显示的菜单项，所有menu项见附录3
+        });
+        wx.onMenuShareTimeline({
+            title: '上海学而思新高三课程体系震撼发布！', // 分享标题
+            link: url1,// 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'https://imgs.xrspy.com/high/highShare.png', // 分享图标
+            success: function () {
+                // 用户点击了分享后执行的回调函数
+            }
+        })
+        wx.onMenuShareAppMessage({
+            title: '上海学而思新高三课程体系震撼发布！', // 分享标题
+            desc: '抢跑就现在，赢定新高三！学而思资深教师天团带孩子抢跑新高三', // 分享描述
+            link: url, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'https://imgs.xrspy.com/high/highShare.png', // 分享图标
+            success: function () {
+                // 用户点击了分享后执行的回调函数
+            }
+        });
     });
 }
 

@@ -8,7 +8,7 @@
  */
 import axios from 'axios'
 import { Cookies } from '../type/index.d';
-
+import { browser } from '../utils/index.js'
 // 跨域 -- 关闭
 // axios.defaults.withCredentials = true;
 
@@ -31,7 +31,7 @@ axios.interceptors.response.use(
     (response) => {
         console.log(response, '--axios-response-success--')
         const { code } = response.data
-        if (code === 0) {
+        if (code === 0 && browser.versions._weixin) {
             Cookies.remove("userdata")
             window.location.href = 'https://wxapi.speiyou.com/usercenter/common/wxoauth?app_id=wx17745458a8a5358c&callback_url=' + window.location.origin
         } else {
