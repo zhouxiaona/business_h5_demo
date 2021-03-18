@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import * as homeActions from '../../redux/actions/home'
 import { bindActionCreators } from 'redux'
 import qs from 'querystring'
+import html2canvas from 'html2canvas/dist/html2canvas.min.js'
+import Canvas2Image from "./canvas2image.js";
 import Jsbridge from "xesjsbridge/dist";
 import AppApi from '../../api/AppApi.js'
 import * as Api from '../../api/api.js'
