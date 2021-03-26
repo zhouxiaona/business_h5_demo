@@ -12,6 +12,9 @@ import { Toast } from 'antd-mobile'
 import 'antd-mobile/lib/toast/style/css'
 import './index.styl'
 
+import Child1 from './child1'
+import Child2 from './child2'
+
 class Index extends React.Component {
     constructor(props) {
         super(props)
@@ -20,23 +23,47 @@ class Index extends React.Component {
             targetNumber: 532456,
             targetNumberArr: [],
             isAni: false,
+            count: 1,
         }
     }
 
 
 
     componentDidMount() {
-        let { targetNumber, targetNumberArr } = this.state
-        let arr = (targetNumber + '').split('')
-        arr = arr.map(item => item = Number(item))
+        console.log('parent componentDidMount')
         this.setState({
-            targetNumberArr: arr
+            count: this.state.count + 1
         }, () => {
-            console.log(this.state.targetNumberArr, '---targetNumberArr---')
-            this.setState({
-                isAni: true
-            })
+            console.log(this.state.count, '--count1--')
         })
+        this.setState({
+            count: this.state.count + 1
+        }, () => {
+            console.log(this.state.count, '--count2--')
+        })
+        // this.setState({
+        //     count: this.state.count + 1
+        // })
+        // console.log(this.state.count, '--count1--') // 1
+        // console.log(this.state.count, '--count2--') // 1
+        // setTimeout(() => {
+        //     this.setState({
+        //         count: this.state.count + 1
+        //     })
+        //     console.log(this.state.count, '--count5--') // 3
+        // }, 0)
+        // this.setState({
+        //     count: this.state.count + 1
+        // })
+        // console.log(this.state.count, '--count3--') // 1
+        // console.log(this.state.count, '--count4--') // 1
+
+        // setTimeout(() => {
+        //     this.setState({
+        //         count: this.state.count + 1
+        //     })
+        //     console.log(this.state.count, '--count5--') // 3
+        // }, 0)
     }
 
     componentWillUnmount() { }
@@ -45,19 +72,8 @@ class Index extends React.Component {
         const { targetNumberArr, numArr, isAni } = this.state
         return (
             <div id="Index">
-                <div className="numberWrap">
-                    {targetNumberArr.map((item, index) => {
-                        return (<div className="numBox" key={index}>
-                            <div className="numBoxInner"
-                                style={isAni
-                                    ? { top: `-${item * 8}vw`, transitionDelay: `${index * 0.3}s` } : { top: 0, transitionDelay: 0 }}>
-                                {numArr.map((val, key) => {
-                                    return (<div className="numItem" key={key}>{val}</div>)
-                                })}
-                            </div>
-                        </div>)
-                    })}
-                </div>
+                <Child1 />
+                <Child2 />
             </div>
         );
     }

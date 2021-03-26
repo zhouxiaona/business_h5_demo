@@ -7,14 +7,15 @@ import "../compontents/Loading/index.styl"
 const About = React.lazy(() => import("../page/About"));
 const Index = React.lazy(() => import("../page/Index"));
 const Clear = React.lazy(() => import("../page/Clear"));
-
+const Review = React.lazy(() => import("../page/Review"));
 const AppRouter: React.FC = () => {
     return (
         <Router>
             <Suspense fallback>
                 <div>
                     <Switch>
-                        <Route path='/' exact component={Index} />
+                        <Route path='/' exact component={Review} />
+                        <Route path='/Index' exact component={Index} />
                         <Route path='/About' exact component={About} />
                         <Route path='/Clear' exact component={Clear} />
                         <Route render={() => <Redirect to="/" />} />
