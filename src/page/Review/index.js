@@ -30,17 +30,41 @@ class Index extends React.Component {
 
 
     componentDidMount() {
-        console.log('parent componentDidMount')
-        this.setState({
-            count: this.state.count + 1
-        }, () => {
-            console.log(this.state.count, '--count1--')
-        })
-        this.setState({
-            count: this.state.count + 1
-        }, () => {
-            console.log(this.state.count, '--count2--')
-        })
+        Object.prototype.a = "jing1";
+        Function.prototype.a = "jing2";
+        function Preson() { };
+        var p = new Preson();
+        console.log(p.a);
+        console.log(p.constructor);
+        console.log(p.__proto__.__proto__.constructor);
+
+        //原型对象
+        // var Jing = {
+        //     name: function () {
+        //         console.log('jingda');
+        //     }
+        // };
+
+        // //实例对象
+        // var Hao = Object.create(Jing);
+        // console.log(Object.getPrototypeOf(Hao) === Jing);
+        // Hao.name();
+        // console.log(Jing.name === Hao.name);
+
+
+
+        // console.log('parent componentDidMount')
+        // this.setState({
+        //     count: this.state.count + 1
+        // }, () => {
+        //     console.log(this.state.count, '--count1--')
+        // })
+        // this.setState({
+        //     count: this.state.count + 1
+        // }, () => {
+        //     console.log(this.state.count, '--count2--')
+        // })
+
         // this.setState({
         //     count: this.state.count + 1
         // })

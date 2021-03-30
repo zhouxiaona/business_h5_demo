@@ -27,7 +27,7 @@ class child1 extends React.Component {
 
 
     componentDidMount() {
-        console.log('child1 componentDidMount')
+        // console.log('child1 componentDidMount')
         // this.setState({
         //     count: this.state.count + 1
         // })
