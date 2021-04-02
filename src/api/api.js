@@ -138,3 +138,8 @@ export async function bindInfo(code, phone) {
 export async function completeUserInfo(name, grade, pUid) {
     return apiUtils.commonPost(`/index/completeUserInfo`, { name, grade, pUid })
 }
+
+//  查询所有的年级&科目信息
+export async function signUpIndex() {
+    return apiUtils.commonPost(`/hcauth/newIndex`, {})
+}

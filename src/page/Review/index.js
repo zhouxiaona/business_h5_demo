@@ -29,14 +29,17 @@ class Index extends React.Component {
 
 
 
-    componentDidMount() {
-        Object.prototype.a = "jing1";
-        Function.prototype.a = "jing2";
-        function Preson() { };
-        var p = new Preson();
-        console.log(p.a);
-        console.log(p.constructor);
-        console.log(p.__proto__.__proto__.constructor);
+    async componentDidMount() {
+        let { code, data, msg } = await Api.signUpIndex()
+        if (code != 1) return Toast.info(msg, 1.8)
+        console.log(data, '--data--')
+        // Object.prototype.a = "jing1";
+        // Function.prototype.a = "jing2";
+        // function Preson() { };
+        // var p = new Preson();
+        // console.log(p.a);
+        // console.log(p.constructor);
+        // console.log(p.__proto__.__proto__.constructor);
 
         //原型对象
         // var Jing = {

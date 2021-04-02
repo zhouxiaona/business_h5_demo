@@ -1,11 +1,3 @@
-/*
- * @Author: tankswift
- * @Date: 2020-06-04 16:40:04
- * @LastEditors: tankswift
- * @LastEditTime: 2020-06-05 13:27:37
- * @Description: axiosConfig
- * @FilePath: \workSpace\h5_demo\src\api\axiosConfig.js
- */
 import axios from 'axios'
 import { Cookies } from '../type/index.d';
 import { browser } from '../utils/index.js'

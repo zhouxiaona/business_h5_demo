@@ -1,9 +1,3 @@
-
-/**
- * @description 数据请求模块，轻度封装fetch
- * @author raziel
- * @since 19/05/23
- */
 import axios from 'axios'
 import { Toast } from 'antd-mobile'
 import 'antd-mobile/lib/toast/style/css'
