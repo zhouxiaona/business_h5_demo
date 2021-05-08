@@ -1,13 +1,8 @@
 import axios from 'axios'
 import { Toast } from 'antd-mobile'
 import 'antd-mobile/lib/toast/style/css'
-// 接口baseUrl
-let baseUrlConfig = {
-    "development": '',
-    "production": 'http://xxx.com/api',
-}
-
-const baseUrl = baseUrlConfig[process.env.NODE_ENV]
+const baseUrlObj = require('./baseUrlConfig');
+const baseUrl = baseUrlObj[process.env.NODE_ENV];
 
 const apiUtils = {
     /**

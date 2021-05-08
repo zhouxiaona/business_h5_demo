@@ -2,7 +2,7 @@
   "name": "business_h5_demo",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://172.50.110.70:8088",
+  "proxy": "",
   "homepage": "/",
   "dependencies": {
     "@babel/core": "7.4.3",
@@ -31,6 +31,7 @@
     "camelcase": "^5.2.0",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
     "core-decorators": "^0.20.0",
+    "cross-env": "^7.0.3",
     "css-loader": "2.1.1",
     "dotenv": "6.2.0",
     "dotenv-expand": "4.2.0",
@@ -47,6 +48,7 @@
     "fs-extra": "7.0.1",
     "html-webpack-plugin": "4.0.0-beta.5",
     "html2canvas": "1.0.0-rc.4",
+    "http-proxy-middleware": "^2.0.0",
     "identity-obj-proxy": "3.0.0",
     "is-wsl": "^1.1.0",
     "jest": "24.7.1",
@@ -91,7 +93,8 @@
     "xesjsbridge": "^1.0.4"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start": "cross-env ENV_PROXY=local node scripts/start.js",
+    "start:release": "cross-env ENV_PROXY=release node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "starts": "set HTTPS=true&&npm start"
