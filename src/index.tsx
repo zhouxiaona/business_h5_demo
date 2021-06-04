@@ -7,7 +7,6 @@ import store from './redux/store/Store'
 import AppRouter from './router/';
 import './api/axiosConfig.js'
 import 'lib-flexible'
-import "./mock.js"
 
 ReactDOM.render(
     <Provider store={store}>
