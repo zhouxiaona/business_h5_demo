@@ -33,6 +33,10 @@ class Index extends React.Component {
         // dev-commit-1
         // test cimmit-1
         // test cimmit-2
+        // test commit-3
+        // test commit-4
+        // test commit-5
+        // test commit-6
         let { targetNumber, targetNumberArr } = this.state
         let arr = (targetNumber + '').split('')
         arr = arr.map(item => item = Number(item))
